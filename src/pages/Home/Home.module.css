@@ -1,0 +1,18 @@
+.title{
+    margin-bottom: 20px;
+}
+.container{
+    margin: 0 50px;
+}
+.movies{
+    color: rgb(9, 1, 20);
+}
+.movies:hover,
+.movies:focus{
+    color: rgb(235, 93, 117);
+}
+.moviesList{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}

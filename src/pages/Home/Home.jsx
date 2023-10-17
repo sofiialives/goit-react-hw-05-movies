@@ -30,7 +30,7 @@ export const Home = () => {
   return (
     <div className={css.container}>
       {loading && <Loader />}
-      {error && <Error />}
+      {error && <Error message={error} />}
       <h1 className={css.title}>Trending today</h1>
       <ul className={css.moviesList}>
         {showPosts &&

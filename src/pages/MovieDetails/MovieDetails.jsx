@@ -36,7 +36,7 @@ export const MovieDetails = () => {
   return (
     <div>
       {loading && <Loader />}
-      {error && <Error />}
+      {error && <Error message={error}/>}
       {showPosts && (
         <div key={moviesId} className={css.commonDiv}>
           <Link to={backLinkHref.current} className={css.button}>&#8592; Go Back</Link>

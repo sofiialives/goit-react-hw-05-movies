@@ -5,7 +5,7 @@ import css from './Home.module.css';
 import { Loader } from 'components/Loader';
 import { Error } from 'components/Error';
 
-export const Home = () => {
+const Home = () => {
   const [movies, setMovies] = useState(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
@@ -45,3 +45,5 @@ export const Home = () => {
     </div>
   );
 };
+
+export default Home;

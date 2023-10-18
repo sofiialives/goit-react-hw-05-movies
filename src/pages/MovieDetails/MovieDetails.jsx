@@ -40,12 +40,12 @@ export const MovieDetails = () => {
       {showPosts && (
         <div key={moviesId} className={css.commonDiv}>
           <Link to={backLinkHref.current} className={css.button}>&#8592; Go Back</Link>
-          <img src={info.backdrop_path} alt={info.title || info.name} />
+          <img src={`https://image.tmdb.org/t/p/w500${info.backdrop_path}`} alt={info.title || info.name} />
           <div className={css.infoDiv}>
             <h1>
               {info.title || info.name} ({info.release_date})
             </h1>
-            <p>User Score: {info.vote_average}%</p>
+            <p>User Score: {Math.round(info.vote_average * 10)}%</p>
             <h2>Overview</h2>
             <p>{info.overview}</p>
             <h3>Genres</h3>

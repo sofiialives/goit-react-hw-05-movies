@@ -1,13 +1,13 @@
 import { useEffect, useState } from 'react';
 import css from './Movies.module.css';
 import { useSearchParams, Link, useLocation } from 'react-router-dom';
-import { DayList } from 'services/DayList';
+import { searchList } from 'services/SearchList';
 import { Loader } from 'components/Loader';
 import { Error } from 'components/Error';
 
 export const Movies = () => {
   const [loading, setLoading] = useState(false);
-  const [links, setLinks] = useState([]);
+  const [films, setFilms] = useState([]);
   const [error, setError] = useState(null);
   const [searchParams, setSearchParams] = useSearchParams();
   const location = useLocation();
@@ -19,8 +19,9 @@ export const Movies = () => {
     const fetchMoviesDetails = async () => {
       try {
         setLoading(true);
-        const movieInfo = await DayList(query);
-        setLinks(movieInfo.results);
+        const movieInfo = await searchList(query);
+        setFilms(movieInfo.results);
+        console.log(movieInfo);
       } catch (error) {
         setError(error.message);
       } finally {
@@ -36,10 +37,6 @@ export const Movies = () => {
     setSearchParams({ query: searchingString });
   };
 
-  const filteredSearch = links.filter(
-    link => link.title && link.title.toLowerCase().includes(query.toLowerCase())
-  );
-
   return (
     <div className={css.div}>
       <form onSubmit={handleSubmit}>
@@ -52,16 +49,15 @@ export const Movies = () => {
       <section>
         {loading && <Loader />}
         {error && <Error message={error} />}
-        {links !== null && (
+        {films.length > 0 && (
           <ul>
-            {links &&
-              filteredSearch.map(link => (
-                <li key={link.id}>
-                  <Link to={`/movies/${link.id}`} state={{ from: location }}>
-                    {link.title || link.name}
-                  </Link>
-                </li>
-              ))}
+            {films.map(film => (
+              <li key={film.id}>
+                <Link to={`/movies/${film.id}`} state={{ from: location }}>
+                  {film.title || film.name}
+                </Link>
+              </li>
+            ))}
           </ul>
         )}
       </section>

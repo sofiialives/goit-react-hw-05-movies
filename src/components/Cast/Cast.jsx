@@ -4,7 +4,7 @@ import { ActorsList } from 'services/ActorsList';
 import { Loader } from 'components/Loader';
 import { Error } from 'components/Error';
 
-export const Cast = () => {
+const Cast = () => {
   const { moviesId } = useParams();
   const [loading, setLoading] = useState(false);
   const [actors, setActors] = useState(null);
@@ -46,3 +46,5 @@ export const Cast = () => {
     </>
   );
 };
+
+export default Cast;
